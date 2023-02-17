@@ -3,7 +3,7 @@ import { ContactItem } from './ContactItem';
 import css from './ContactList.module.css';
 
 export const ContactList = ({ contacts }) => {
-  console.log(contacts)
+
   return (
     <div className={css.wrap}>
     <ul>

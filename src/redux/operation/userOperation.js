@@ -14,7 +14,6 @@ const token = {
 
 export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
-  console.log(state)
   const persistedToken = state.auth.token;
 
   if (!persistedToken) {
@@ -23,7 +22,6 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   token.set(persistedToken);
   try {
     const {data} = await axios.get('/users/current');
-    // console.log(data)
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -39,7 +37,6 @@ export const register = createAsyncThunk(
         email,
         password,
       });
-      //   console.log(data)
       token.set(data.token);
       return data;
     } catch (error) {
@@ -53,7 +50,6 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/login', { email, password });
-      //   console.log(data);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -65,7 +61,6 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/logout');
-    // console.log(data);
     token.unset();
     return data;
   } catch (error) {

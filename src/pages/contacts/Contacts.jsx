@@ -24,8 +24,6 @@ const Contacts = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  console.log('contacts', contacts)
-
   return (
     <div style={{ width: '550px', margin: '0 auto' }}>
       

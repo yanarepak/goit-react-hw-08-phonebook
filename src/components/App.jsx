@@ -10,7 +10,6 @@ import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
 import { selectIsRefreshing } from 'redux/selectors';
 
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from 'redux/operation/userOperation';
@@ -22,24 +21,6 @@ const App = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-
-  console.log(111111111, isRefreshing);
-  // return (
-  //   <>
-  //     <Navigation />
-
-  //     <Suspense fallback={<p>Loading....</p>}>
-  //       <Routes>
-  //         <Route path="/" element={<Home />} />
-  //         <Route path="/register" element={<Register />} />
-  //         <Route path="/login" element={<Login />} />
-  //         <Route path="/contacts" element={<Contacts />} />
-
-  //         <Route element={<ErrorPage />} path="*" />
-  //       </Routes>
-  //     </Suspense>
-  //   </>
-  // );
 
   return (
 
