@@ -17,11 +17,14 @@ const Contacts = () => {
     if(isLoggedIn){
       dispatch(fetchContacts())
     }
-  },[dispatch, isLoggedIn])
+    // eslint-disable-next-line 
+  },[isLoggedIn])
 
   const filterContactsList = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+
+  console.log('contacts', contacts)
 
   return (
     <div style={{ width: '550px', margin: '0 auto' }}>

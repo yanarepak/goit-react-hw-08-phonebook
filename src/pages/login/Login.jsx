@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { login } from 'redux/operation/userOperation';
 
 const Login = () => {
-  const initiaValues = {
+  const initialValues = {
     email: '',
     password: '',
   };
@@ -21,8 +21,8 @@ const Login = () => {
       <h3 style={{ textAlign: 'center' }}>Login Form</h3>
 
       <div style={{ width: '550px', margin: '0 auto' }}>
-        <Formik initiaValues={initiaValues} onSubmit={handleSubmitLogin}>
-          {({ values }) => (
+        <Formik initialValues={initialValues} onSubmit={handleSubmitLogin}>
+          {({ values, handleBlur, handleChange }) => (
             <Form className={css.form}>
               <label htmlFor="email" className={css.label}>
                 Email
@@ -33,6 +33,8 @@ const Login = () => {
                   className={css.input}
                   required
                   value={values.email || ''}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
               </label>
 
@@ -45,6 +47,8 @@ const Login = () => {
                   className={css.input}
                   required
                   value={values.password || ''}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
               </label>
               <button type="submit" className={css.btn}>

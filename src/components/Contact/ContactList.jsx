@@ -3,6 +3,7 @@ import { ContactItem } from './ContactItem';
 import css from './ContactList.module.css';
 
 export const ContactList = ({ contacts }) => {
+  console.log(contacts)
   return (
     <div className={css.wrap}>
     <ul>
@@ -23,8 +24,6 @@ ContactList.propTypes = {
   contacts: PT.arrayOf(
     PT.shape({
       id: PT.string.isRequired,
-      name: PT.string.isRequired,
-      number: PT.string.isRequired,
     }).isRequired
   ).isRequired,
 

@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { register } from 'redux/operation/userOperation';
 
 const Register = () => {
-  const initiaValues = {
+ 
+  const initialValues = {
     name: '',
     email: '',
     password: '',
@@ -12,8 +13,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values)
+  const handleSubmit = async (values, { resetForm }) => {
     dispatch(register(values));
     resetForm();
   };
@@ -23,9 +23,10 @@ const Register = () => {
       <h3 style={{ textAlign: 'center' }}>Registration Form</h3>
 
       <div style={{ width: '550px', margin: '0 auto' }}>
-        <Formik initiaValues={initiaValues} onSubmit={handleSubmit}>
-          {({ values }) => (
-            <Form className={css.form}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+
+        {({ values, handleChange, handleBlur }) => (
+            <Form className={css.form} >
               <label htmlFor="name" className={css.label}>
                 Email
                 <Field
@@ -35,6 +36,9 @@ const Register = () => {
                   className={css.input}
                   required
                   value={values.name || ''}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  id='name'
                 />
               </label>
 
@@ -47,6 +51,9 @@ const Register = () => {
                   className={css.input}
                   required
                   value={values.email || ''}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  id='email'
                 />
               </label>
 
@@ -59,6 +66,9 @@ const Register = () => {
                   className={css.input}
                   required
                   value={values.password || ''}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  id='password'
                 />
               </label>
 

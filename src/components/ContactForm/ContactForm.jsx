@@ -37,6 +37,8 @@ export const ContactForm = () => {
       name: values.name,
     };
 
+    console.log(newContact)
+
     contacts.find(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     )

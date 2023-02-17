@@ -6,9 +6,10 @@ import Login from 'pages/login/Login';
 import Contacts from 'pages/contacts/Contacts';
 import { ErrorPage } from 'pages/error/ErrorPage';
 import Navigation from './Navigation/Navigation';
-// import PublicRoute from './Routes/PrivateRoute';
-// import PrivateRoute from './Routes/PrivateRoute';
+import PublicRoute from './Routes/PublicRoute';
+import PrivateRoute from './Routes/PrivateRoute';
 import { selectIsRefreshing } from 'redux/selectors';
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -22,57 +23,57 @@ const App = () => {
     dispatch(getUser());
   }, [dispatch]);
 
-  console.log(isRefreshing);
-  return (
-    <>
-      <Navigation />
-
-      <Suspense fallback={<p>Loading....</p>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contacts" element={<Contacts />} />
-
-          <Route element={<ErrorPage />} path="*" />
-        </Routes>
-      </Suspense>
-    </>
-  );
-
+  console.log(111111111, isRefreshing);
   // return (
-
-  //   !isRefreshing &&
   //   <>
   //     <Navigation />
 
   //     <Suspense fallback={<p>Loading....</p>}>
   //       <Routes>
-  //         <Route path="/" element={<PublicRoute children={<Home />}/>} />
-  //         <Route
-  //           path="/register"
-  //           element={
-  //             <PublicRoute redirectTo="/contacts" restricted children={<Register />} />
-  //           }
-  //         />
-  //         <Route
-  //           path="/login"
-  //           element={
-  //             <PublicRoute redirectTo="/contacts" restricted children={<Login />} />
-  //           }
-  //         />
-  //         <Route
-  //           path="/contacts"
-  //           element={
-  //             <PrivateRoute redirectTo="/login" children={<Contacts />} />
-  //           }
-  //         />
+  //         <Route path="/" element={<Home />} />
+  //         <Route path="/register" element={<Register />} />
+  //         <Route path="/login" element={<Login />} />
+  //         <Route path="/contacts" element={<Contacts />} />
 
   //         <Route element={<ErrorPage />} path="*" />
   //       </Routes>
   //     </Suspense>
   //   </>
   // );
+
+  return (
+
+    !isRefreshing &&
+    <>
+      <Navigation />
+
+      <Suspense fallback={<p>Loading....</p>}>
+        <Routes>
+          <Route path="/" element={<PublicRoute children={<Home />}/>} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute redirectTo="/contacts"  children={<Register />} />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute redirectTo="/contacts"  children={<Login />} />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" children={<Contacts />} />
+            }
+          />
+
+          <Route element={<ErrorPage />} path="*" />
+        </Routes>
+      </Suspense>
+    </>
+  );
 };
 
 export default App;

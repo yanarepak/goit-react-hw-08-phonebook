@@ -33,10 +33,11 @@ const contactsSlice = createSlice({
       state.contacts.isLoading = true;
     },
     [addContact.fulfilled](state, { payload }) {
+      console.log('payload', payload)
       state.contacts.isLoading = false;
       state.contacts.items.push({
         name: payload.name,
-        phone: payload.phone,
+        number: payload.number,
         id: payload.id,
       });
       state.contacts.error = null;
